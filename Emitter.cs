@@ -38,7 +38,7 @@ namespace Kyrsach
                                     // если здоровье кончилось
                 if (particle.Life < 0)
                 {
-                   CreateParticle();
+                    CreateParticle();
                     ResetParticle(particle);
                     if (particlesToCreate > 0)
                     {
@@ -55,7 +55,7 @@ namespace Kyrsach
                     particle.X += particle.SpeedX;
                     particle.Y += particle.SpeedY;
                     // гравитация воздействует на вектор скорости, поэтому пересчитываем его
-                  
+
                 }
                 while (particlesToCreate >= 1)
                 {
@@ -84,7 +84,7 @@ namespace Kyrsach
                 }
 
             }
-        }
+        } 
         // функция рендеринга
         public void Render(Graphics g)
         {
