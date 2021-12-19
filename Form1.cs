@@ -24,13 +24,13 @@ namespace Kyrsach
                 Spreading = 50,
                 SpeedMin = 10,
                 SpeedMax = 10,
-                ColorFrom = Color.Gold,
-                ColorTo = Color.FromArgb(0, Color.Red),
+                ColorFrom = Color.Black,
+                ColorTo = Color.FromArgb(0, Color.Green),
                 ParticlesPerTick = 10,
                 PositionX = picDisplay.Width / 2,
                 PositionY = picDisplay.Height / 2,
             };
-
+            
             emitters.Add(this.emitter); // все равно добавляю в список emitters, чтобы он рендерился и обновлялся
         }
 
@@ -39,7 +39,7 @@ namespace Kyrsach
         {
             DisplayCenter();
             emitter.UpdateState();
-            
+            CountOfParticles.Text = $"Количество частиц: {emitter.particles.Count}";
             using (var g = Graphics.FromImage(picDisplay.Image))
             {
                 g.Clear(Color.White); 
@@ -65,6 +65,23 @@ namespace Kyrsach
         private void SpreadingTrack_Scroll(object sender, EventArgs e)
         {
             emitter.Spreading = SpreadingTrack.Value;
+        }
+
+        private void SpeedTrack_Scroll(object sender, EventArgs e)
+        {
+            emitter.Speed = SpeedTrack.Value;
+        }
+
+        private void PartickleTrack_Scroll(object sender, EventArgs e)
+        {
+            emitter.ParticlesPerTick = PartickleTrack.Value;
+        }
+
+
+        private void LifeTrack_Scroll(object sender, EventArgs e)
+        {
+            emitter.LifeMax = LifeTrack.Value;
+
         }
     }
 }

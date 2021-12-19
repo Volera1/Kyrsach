@@ -36,9 +36,19 @@ namespace Kyrsach
             this.label1 = new System.Windows.Forms.Label();
             this.SpreadingTrack = new System.Windows.Forms.TrackBar();
             this.label2 = new System.Windows.Forms.Label();
+            this.SpeedTrack = new System.Windows.Forms.TrackBar();
+            this.label3 = new System.Windows.Forms.Label();
+            this.CountOfParticles = new System.Windows.Forms.Label();
+            this.PartickleTrack = new System.Windows.Forms.TrackBar();
+            this.label4 = new System.Windows.Forms.Label();
+            this.LifeTrack = new System.Windows.Forms.TrackBar();
+            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picDisplay)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DirectionTrack)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SpreadingTrack)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SpeedTrack)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PartickleTrack)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.LifeTrack)).BeginInit();
             this.SuspendLayout();
             // 
             // picDisplay
@@ -60,7 +70,7 @@ namespace Kyrsach
             this.DirectionTrack.Location = new System.Drawing.Point(804, 43);
             this.DirectionTrack.Maximum = 359;
             this.DirectionTrack.Name = "DirectionTrack";
-            this.DirectionTrack.Size = new System.Drawing.Size(200, 56);
+            this.DirectionTrack.Size = new System.Drawing.Size(229, 56);
             this.DirectionTrack.TabIndex = 1;
             this.DirectionTrack.TickStyle = System.Windows.Forms.TickStyle.None;
             this.DirectionTrack.Value = 90;
@@ -70,7 +80,7 @@ namespace Kyrsach
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(835, 12);
+            this.label1.Location = new System.Drawing.Point(861, 12);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(136, 28);
             this.label1.TabIndex = 2;
@@ -83,7 +93,7 @@ namespace Kyrsach
             this.SpreadingTrack.Location = new System.Drawing.Point(804, 102);
             this.SpreadingTrack.Maximum = 359;
             this.SpreadingTrack.Name = "SpreadingTrack";
-            this.SpreadingTrack.Size = new System.Drawing.Size(200, 56);
+            this.SpreadingTrack.Size = new System.Drawing.Size(229, 56);
             this.SpreadingTrack.TabIndex = 3;
             this.SpreadingTrack.TickStyle = System.Windows.Forms.TickStyle.None;
             this.SpreadingTrack.Value = 50;
@@ -93,28 +103,117 @@ namespace Kyrsach
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(861, 71);
+            this.label2.Location = new System.Drawing.Point(885, 71);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(87, 28);
             this.label2.TabIndex = 4;
             this.label2.Text = "Разброс";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // SpeedTrack
+            // 
+            this.SpeedTrack.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.SpeedTrack.LargeChange = 1;
+            this.SpeedTrack.Location = new System.Drawing.Point(804, 164);
+            this.SpeedTrack.Name = "SpeedTrack";
+            this.SpeedTrack.Size = new System.Drawing.Size(229, 56);
+            this.SpeedTrack.TabIndex = 5;
+            this.SpeedTrack.Value = 1;
+            this.SpeedTrack.Scroll += new System.EventHandler(this.SpeedTrack_Scroll);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label3.Location = new System.Drawing.Point(875, 133);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(97, 28);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "Скорость";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // CountOfParticles
+            // 
+            this.CountOfParticles.AutoSize = true;
+            this.CountOfParticles.Location = new System.Drawing.Point(804, 407);
+            this.CountOfParticles.Name = "CountOfParticles";
+            this.CountOfParticles.Size = new System.Drawing.Size(144, 20);
+            this.CountOfParticles.TabIndex = 7;
+            this.CountOfParticles.Text = "Количество частиц:";
+            // 
+            // PartickleTrack
+            // 
+            this.PartickleTrack.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.PartickleTrack.LargeChange = 1;
+            this.PartickleTrack.Location = new System.Drawing.Point(804, 240);
+            this.PartickleTrack.Minimum = 1;
+            this.PartickleTrack.Name = "PartickleTrack";
+            this.PartickleTrack.Size = new System.Drawing.Size(229, 56);
+            this.PartickleTrack.TabIndex = 8;
+            this.PartickleTrack.Value = 1;
+            this.PartickleTrack.Scroll += new System.EventHandler(this.PartickleTrack_Scroll);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label4.Location = new System.Drawing.Point(804, 209);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(229, 28);
+            this.label4.TabIndex = 9;
+            this.label4.Text = "Количетво частиц в тик";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // LifeTrack
+            // 
+            this.LifeTrack.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.LifeTrack.LargeChange = 1;
+            this.LifeTrack.Location = new System.Drawing.Point(804, 311);
+            this.LifeTrack.Maximum = 100;
+            this.LifeTrack.Minimum = 30;
+            this.LifeTrack.Name = "LifeTrack";
+            this.LifeTrack.Size = new System.Drawing.Size(229, 56);
+            this.LifeTrack.TabIndex = 10;
+            this.LifeTrack.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.LifeTrack.Value = 100;
+            this.LifeTrack.Scroll += new System.EventHandler(this.LifeTrack_Scroll);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label5.Location = new System.Drawing.Point(817, 280);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(204, 28);
+            this.label5.TabIndex = 11;
+            this.label5.Text = "Длительность жизни";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1016, 450);
+            this.ClientSize = new System.Drawing.Size(1043, 450);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.LifeTrack);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.PartickleTrack);
+            this.Controls.Add(this.CountOfParticles);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.SpeedTrack);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.SpreadingTrack);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.DirectionTrack);
             this.Controls.Add(this.picDisplay);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Шарики";
             ((System.ComponentModel.ISupportInitialize)(this.picDisplay)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DirectionTrack)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SpreadingTrack)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SpeedTrack)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PartickleTrack)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.LifeTrack)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -128,6 +227,13 @@ namespace Kyrsach
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TrackBar SpreadingTrack;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TrackBar SpeedTrack;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label CountOfParticles;
+        private System.Windows.Forms.TrackBar PartickleTrack;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TrackBar LifeTrack;
+        private System.Windows.Forms.Label label5;
     }
 }
 
