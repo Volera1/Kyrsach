@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing; // чтобы исплоьзовать Graphics
+using System.Drawing.Drawing2D;
 
 namespace Kyrsach
 {
@@ -46,6 +47,12 @@ namespace Kyrsach
             // нарисовали залитый кружок радиусом Radius с центром в X, Y
             g.FillEllipse(b, X - Radius, Y - Radius, Radius * 2, Radius * 2);
             b.Dispose();
+        }
+        public GraphicsPath GetGraphicsPath()
+        {
+            var path = new GraphicsPath();
+            path.AddEllipse(X - Radius, Y - Radius, Radius * 2, Radius * 2);
+            return path;
         }
 
     }

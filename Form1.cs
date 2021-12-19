@@ -14,6 +14,7 @@ namespace Kyrsach
     {
         List<Emitter> emitters = new List<Emitter>();
         Emitter emitter; // добавим поле для эмиттера
+        CircleColor Circle = new CircleColor() { Radius = 90 }; //создаю круг для изменения цвета
         public Form1()
         {
             InitializeComponent();
@@ -39,11 +40,20 @@ namespace Kyrsach
         {
             DisplayCenter();
             emitter.UpdateState();
+            
             CountOfParticles.Text = $"Количество частиц: {emitter.particles.Count}";
             using (var g = Graphics.FromImage(picDisplay.Image))
             {
                 g.Clear(Color.White); 
                 emitter.Render(g);
+                Circle.Render(g);
+                foreach (ParticleColorful particle in emitter.particles)
+                {
+                    if (Circle.Overlaps(particle, g))
+                    {
+                        particle.FromColor = Color.Red;
+                    }
+                }
             }
 
 

@@ -70,6 +70,7 @@ namespace Kyrsach
             this.DirectionTrack.Location = new System.Drawing.Point(804, 43);
             this.DirectionTrack.Maximum = 359;
             this.DirectionTrack.Name = "DirectionTrack";
+            this.DirectionTrack.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.DirectionTrack.Size = new System.Drawing.Size(229, 56);
             this.DirectionTrack.TabIndex = 1;
             this.DirectionTrack.TickStyle = System.Windows.Forms.TickStyle.None;
