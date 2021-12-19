@@ -44,13 +44,14 @@ namespace Kyrsach
                     particle.FromColor = Color.Green;
                     DeadInside += 1;//умер
                     CreateParticle();
-                    ResetParticle(particle);
                     if (particlesToCreate > 0)
                     {
                         /* у нас как сброс частицы равносилен созданию частицы */
                         particlesToCreate -= 1; // поэтому уменьшаем счётчик созданных частиц на 1
                         ResetParticle(particle);
                     }
+                    else
+                    { particle.Life = 0;}
                 }
                 else
                 {
