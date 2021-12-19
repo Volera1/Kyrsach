@@ -32,7 +32,6 @@ namespace Kyrsach
             picDisplay.Image = new Bitmap(picDisplay.Width, picDisplay.Height);
             this.emitter = new Emitter // создаю эмиттер и привязываю его к полю emitter
             {
-                ParticlesPerTick = 10,
                 PositionX = picDisplay.Width / 2,
                 PositionY = picDisplay.Height / 2,
             };
@@ -46,7 +45,7 @@ namespace Kyrsach
             DisplayCenter();
             emitter.UpdateState();
             
-            CountOfParticles.Text = $"Количество частиц: {emitter.particles.Count}";
+            CountOfParticles.Text = $"Количество частиц: {emitter.particles.Count-emitter.DeadInside}";
             using (var g = Graphics.FromImage(picDisplay.Image))
             {
                 CircleOver(CircleRed,g);

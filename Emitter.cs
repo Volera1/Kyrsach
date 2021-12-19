@@ -29,10 +29,12 @@ namespace Kyrsach
         public float GravitationY = 0.25f; // пусть гравитация будет силой один пиксель за такт, нам хватит
 
         public int ParticlesPerTick = 1; // количество частиц в такт
+        public int DeadInside = 0; //количество мертых частиц
+
         public void UpdateState()
         {
             int particlesToCreate = ParticlesPerTick; // фиксируем счетчик сколько частиц нам создавать за тик
-            
+            DeadInside = 0;
             foreach (ParticleColorful particle in particles)
             {
                 particle.Life -= 1; // уменьшаю здоровье
@@ -40,20 +42,18 @@ namespace Kyrsach
                 if (particle.Life < 0)
                 {
                     particle.FromColor = Color.Green;
-                    
+                    DeadInside += 1;//умер
                     CreateParticle();
                     ResetParticle(particle);
                     if (particlesToCreate > 0)
                     {
                         /* у нас как сброс частицы равносилен созданию частицы */
                         particlesToCreate -= 1; // поэтому уменьшаем счётчик созданных частиц на 1
-
+                        ResetParticle(particle);
                     }
                 }
                 else
                 {
-                    
-                    
                     particle.SpeedX += GravitationX;
                     particle.SpeedY += GravitationY;
                     particle.X += particle.SpeedX;
