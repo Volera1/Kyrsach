@@ -14,19 +14,24 @@ namespace Kyrsach
     {
         List<Emitter> emitters = new List<Emitter>();
         Emitter emitter; // добавим поле для эмиттера
-        CircleColor Circle = new CircleColor() { Radius = 90 }; //создаю круг для изменения цвета
+        CircleColor CircleRed = new CircleColor(); //создаю круг для изменения цвета на красный
+        CircleColor CircleAqua = new CircleColor()
+        {
+            color = Color.Aqua
+        };
+        CircleColor CircleYellow = new CircleColor()
+        {
+            color = Color.Yellow
+        };
+        CircleColor CircleTan = new CircleColor() {color=Color.Tan };
+        CircleColor CircleChar = new CircleColor() { color = Color.Chartreuse };
+        CircleColor Circle = new CircleColor() { color = Color.Coral };
         public Form1()
         {
             InitializeComponent();
             picDisplay.Image = new Bitmap(picDisplay.Width, picDisplay.Height);
             this.emitter = new Emitter // создаю эмиттер и привязываю его к полю emitter
             {
-                Direction = 90,
-                Spreading = 50,
-                SpeedMin = 10,
-                SpeedMax = 10,
-                ColorFrom = Color.Black,
-                ColorTo = Color.FromArgb(0, Color.Green),
                 ParticlesPerTick = 10,
                 PositionX = picDisplay.Width / 2,
                 PositionY = picDisplay.Height / 2,
@@ -44,27 +49,48 @@ namespace Kyrsach
             CountOfParticles.Text = $"Количество частиц: {emitter.particles.Count}";
             using (var g = Graphics.FromImage(picDisplay.Image))
             {
-                g.Clear(Color.White); 
+                CircleOver(CircleRed,g);
+                CircleOver(CircleAqua, g);
+                CircleOver(CircleYellow, g);
+                CircleOver(CircleTan, g);
+                CircleOver(CircleChar,g);
+                CircleOver(Circle, g);
+
+                g.Clear(Color.White);
                 emitter.Render(g);
+                CircleRed.Render(g);
+                CircleAqua.Render(g);
+                CircleYellow.Render(g);
+                CircleTan.Render(g);
+                CircleChar.Render(g);
                 Circle.Render(g);
-                foreach (ParticleColorful particle in emitter.particles)
-                {
-                    if (Circle.Overlaps(particle, g))
-                    {
-                        particle.FromColor = Color.Red;
-                    }
-                }
             }
-
-
-            // обновить picDisplay
+                        // обновить picDisplay
             picDisplay.Invalidate();
-            
+
+        }
+        private void CircleOver(CircleColor Circle, Graphics g)
+        {
+            foreach (ParticleColorful particle in emitter.particles)
+            {
+                if (Circle.Overlaps(particle, g))
+                {
+                    particle.FromColor = Circle.color;
+                }
+
+            }
         }
         private void DisplayCenter()
         {
             emitter.PositionX = picDisplay.Image.Width / 2;
             emitter.PositionY = picDisplay.Image.Height / 2;
+            CircleAqua.Y = picDisplay.Image.Height / 2;
+            CircleYellow.Y = picDisplay.Image.Height - 60;
+            CircleTan.X = picDisplay.Image.Width - 60;
+            CircleChar.X = picDisplay.Image.Width - 60;
+            CircleChar.Y = picDisplay.Image.Height / 2;
+            Circle.X = picDisplay.Image.Width - 60;
+            Circle.Y = picDisplay.Image.Height - 60;
         }
 
         private void DirectionTrack_Scroll(object sender, EventArgs e)

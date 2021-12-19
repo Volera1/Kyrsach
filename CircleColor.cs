@@ -14,15 +14,15 @@ namespace Kyrsach
         private Action<Particle, CircleColor>? onOverlap;
         public float X = 60;
         public float Y = 60;
-        public float Radius= 50;
-
+        public float Radius= 55;
+        public Color color = Color.Red;
         public Random random = new();
 
         internal Action<Particle, CircleColor> OnOverlap { get => onOverlap; set => onOverlap = value; }
 
         //Рендер объекта
         public void Render(Graphics g) {
-            g.DrawEllipse(new Pen(Color.Red,1), X - Radius, Y - Radius, Radius * 2, Radius * 2);
+            g.DrawEllipse(new Pen(color,1), X - Radius, Y - Radius, Radius * 2, Radius * 2);
         }
         public GraphicsPath GetGraphicsPath()
         {

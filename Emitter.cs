@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 
 namespace Kyrsach
 {
@@ -12,9 +13,9 @@ namespace Kyrsach
         public List<Particle> particles = new List<Particle>();
         public float PositionX;
         public float PositionY;
-        public int Direction = 0; // вектор направления в градусах куда сыпет эмиттер
-        public int Spreading = 360; // разброс частиц относительно Direction
-        public int Speed = 1; //Контроль скорости
+        public int Direction = 90; // вектор направления в градусах куда сыпет эмиттер
+        public int Spreading = 50; // разброс частиц относительно Direction
+        public int Speed = 9; //Контроль скорости
         public int SpeedMin =0; // начальная минимальная скорость движения частицы
         public int SpeedMax = 4; // начальная максимальная скорость движения частицы
         public int RadiusMin = 2; // минимальный радиус частицы
@@ -22,35 +23,37 @@ namespace Kyrsach
         public int LifeMin = 20; // минимальное время жизни частицы
         public int LifeMax = 100; // максимальное время жизни частицы
 
-        public Color ColorFrom = Color.Black; // начальный цвет частицы
-        public Color ColorTo = Color.FromArgb(0, Color.Green); // конечный цвет частиц
+        public Color ColorFrom = Color.Green; // начальный цвет частицы
+        public Color ColorTo = Color.FromArgb(0, Color.White); // конечный цвет частиц
         public float GravitationX = 0;
         public float GravitationY = 0.25f; // пусть гравитация будет силой один пиксель за такт, нам хватит
 
         public int ParticlesPerTick = 1; // количество частиц в такт
-
         public void UpdateState()
         {
             int particlesToCreate = ParticlesPerTick; // фиксируем счетчик сколько частиц нам создавать за тик
-
-            foreach (var particle in particles)
+            
+            foreach (ParticleColorful particle in particles)
             {
                 particle.Life -= 1; // уменьшаю здоровье
-                                    // если здоровье кончилось
+                // если здоровье кончилось
                 if (particle.Life < 0)
                 {
+                    particle.FromColor = Color.Green;
+                    
                     CreateParticle();
                     ResetParticle(particle);
                     if (particlesToCreate > 0)
                     {
                         /* у нас как сброс частицы равносилен созданию частицы */
                         particlesToCreate -= 1; // поэтому уменьшаем счётчик созданных частиц на 1
-                        
+
                     }
                 }
                 else
                 {
-
+                    
+                    
                     particle.SpeedX += GravitationX;
                     particle.SpeedY += GravitationY;
                     particle.X += particle.SpeedX;

@@ -77,7 +77,7 @@ namespace Kyrsach
         // ну и отрисовку перепишем
         public override void Draw(Graphics g)
         {
-            float k = Math.Min(1f, Life / 100);
+            float k = Math.Min(1f, Life / 50);
 
             // так как k уменьшается от 1 до 0, то порядок цветов обратный
             var color = MixColor(ToColor, FromColor, k);
