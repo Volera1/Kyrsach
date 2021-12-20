@@ -23,9 +23,10 @@ namespace Kyrsach
         {
             color = Color.Yellow
         };
-        CircleColor CircleTan = new CircleColor() {color=Color.Tan };
+        CircleColor CircleTan = new CircleColor() { color = Color.Tan };
         CircleColor CircleChar = new CircleColor() { color = Color.Chartreuse };
         CircleColor Circle = new CircleColor() { color = Color.Coral };
+        Random random = new();
         public Form1()
         {
             InitializeComponent();
@@ -35,24 +36,25 @@ namespace Kyrsach
                 PositionX = picDisplay.Width / 2,
                 PositionY = picDisplay.Height / 2,
             };
-            
+
             emitters.Add(this.emitter); // все равно добавляю в список emitters, чтобы он рендерился и обновлялся
         }
 
 
         private void timer1_Tick(object sender, EventArgs e)
         {
+
             DisplayCenter();
             emitter.UpdateState();
-            
-            CountOfParticles.Text = $"Количество частиц: {emitter.particles.Count-emitter.DeadInside}";
+
+            CountOfParticles.Text = $"Количество частиц: {emitter.particles.Count - emitter.DeadInside}";
             using (var g = Graphics.FromImage(picDisplay.Image))
             {
-                CircleOver(CircleRed,g);
+                CircleOver(CircleRed, g);
                 CircleOver(CircleAqua, g);
                 CircleOver(CircleYellow, g);
                 CircleOver(CircleTan, g);
-                CircleOver(CircleChar,g);
+                CircleOver(CircleChar, g);
                 CircleOver(Circle, g);
 
                 g.Clear(Color.White);
@@ -64,7 +66,7 @@ namespace Kyrsach
                 CircleChar.Render(g);
                 Circle.Render(g);
             }
-                        // обновить picDisplay
+            // обновить picDisplay
             picDisplay.Invalidate();
 
         }
@@ -118,5 +120,30 @@ namespace Kyrsach
             emitter.LifeMax = LifeTrack.Value;
 
         }
+
+        private void ColorButton_Click(object sender, EventArgs e)
+        {
+            int[] c = new int[6];
+            for (int i=0; i < 6; i++)
+            {
+                for(int j=0;j<i-1;j++)
+                {
+                    while(c[i-1] == c[j])
+                    {
+                        c[j] = random.Next(11);
+                    }
+                }
+                c[i] = random.Next(11);
+                
+                
+            }
+                CircleRed.ColorChange(c[0]);
+                CircleAqua.ColorChange(c[1]);
+            CircleYellow.ColorChange(c[2]);
+                CircleTan.ColorChange(c[3]);
+                CircleChar.ColorChange(c[4]);
+                Circle.ColorChange(c[5]);
+            }
+        }
     }
-}
+

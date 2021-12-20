@@ -22,7 +22,7 @@ namespace Kyrsach
 
         //Рендер объекта
         public void Render(Graphics g) {
-            g.DrawEllipse(new Pen(color,1), X - Radius, Y - Radius, Radius * 2, Radius * 2);
+            g.DrawEllipse(new Pen(color,3), X - Radius, Y - Radius, Radius * 2, Radius * 2);
         }
         public GraphicsPath GetGraphicsPath()
         {
@@ -30,7 +30,7 @@ namespace Kyrsach
             path.AddEllipse(X - Radius, Y - Radius, Radius * 2, Radius * 2);
             return path;
         }
-        public virtual bool Overlaps(Particle obj, Graphics g)
+        public bool Overlaps(Particle obj, Graphics g)
         {
             // берем информацию о форме
             var path1 = this.GetGraphicsPath();
@@ -41,6 +41,72 @@ namespace Kyrsach
             var region = new Region(path1);
             region.Intersect(path2); // пересекаем формы
             return !region.IsEmpty(g); // если полученная форма не пуста то значит было пересечение
+        }
+        public void ColorChange(int i)
+        {
+            switch (i)
+            {
+                case 1:
+                    {
+                        color = Color.Aqua;
+                        break;
+                    }
+                case 2:
+                    {
+                        color = Color.BlueViolet;
+                        break;
+                    }
+                case 3:
+                    {
+                        color = Color.OrangeRed;
+                        break;
+                    }
+                case 4:
+                    {
+                        color = Color.CadetBlue;
+                        break;
+                    }
+                case 5:
+                    {
+                        color = Color.Chocolate;
+                        break;
+                    }
+                case 6:
+                    {
+                        color = Color.Coral;
+                        break;
+                    }
+                case 7:
+                    {
+                        color = Color.Tan;
+                        break;
+                    }
+                case 8:
+                    {
+                        color = Color.Black;
+                        break;
+                    }
+                case 9:
+                    {
+                        color = Color.Chartreuse;
+                        break;
+                    }
+                case 10:
+                    {
+                        color = Color.Magenta;
+                        break;
+                    }
+                case 11:
+                    {
+                        color = Color.Yellow;
+                        break;
+                    }
+                default:
+                    {
+                        color = Color.HotPink;
+                        break;
+                    }
+            }
         }
 
     }

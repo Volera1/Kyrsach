@@ -30,6 +30,7 @@ namespace Kyrsach
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.picDisplay = new System.Windows.Forms.PictureBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.DirectionTrack = new System.Windows.Forms.TrackBar();
@@ -43,6 +44,7 @@ namespace Kyrsach
             this.label4 = new System.Windows.Forms.Label();
             this.LifeTrack = new System.Windows.Forms.TrackBar();
             this.label5 = new System.Windows.Forms.Label();
+            this.ColorButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.picDisplay)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DirectionTrack)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SpreadingTrack)).BeginInit();
@@ -62,6 +64,7 @@ namespace Kyrsach
             // timer1
             // 
             this.timer1.Enabled = true;
+            this.timer1.Interval = 30;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // DirectionTrack
@@ -119,7 +122,7 @@ namespace Kyrsach
             this.SpeedTrack.Name = "SpeedTrack";
             this.SpeedTrack.Size = new System.Drawing.Size(229, 56);
             this.SpeedTrack.TabIndex = 5;
-            this.SpeedTrack.Value = 1;
+            this.SpeedTrack.Value = 9;
             this.SpeedTrack.Scroll += new System.EventHandler(this.SpeedTrack_Scroll);
             // 
             // label3
@@ -190,11 +193,24 @@ namespace Kyrsach
             this.label5.Text = "Длительность жизни";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // ColorButton
+            // 
+            this.ColorButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ColorButton.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.ColorButton.Location = new System.Drawing.Point(804, 349);
+            this.ColorButton.Name = "ColorButton";
+            this.ColorButton.Size = new System.Drawing.Size(229, 42);
+            this.ColorButton.TabIndex = 12;
+            this.ColorButton.Text = "Изменить цвета";
+            this.ColorButton.UseVisualStyleBackColor = true;
+            this.ColorButton.Click += new System.EventHandler(this.ColorButton_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1043, 450);
+            this.Controls.Add(this.ColorButton);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.LifeTrack);
             this.Controls.Add(this.label4);
@@ -207,6 +223,7 @@ namespace Kyrsach
             this.Controls.Add(this.label1);
             this.Controls.Add(this.DirectionTrack);
             this.Controls.Add(this.picDisplay);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Text = "Шарики";
             ((System.ComponentModel.ISupportInitialize)(this.picDisplay)).EndInit();
@@ -235,6 +252,7 @@ namespace Kyrsach
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TrackBar LifeTrack;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button ColorButton;
     }
 }
 
